@@ -1,0 +1,59 @@
+server:
+  port: 8088
+
+person:
+  name: zhangsan
+
+spring:
+  mvc:
+    contentnegotiation:
+      favor-parameter: true #基于参数的内容协商,Get和Post请求均可 可以指定xml或json格式
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/video_style_transfer?useSSL=false&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: zhaoyong98
+    driver-class-name: com.mysql.jdbc.Driver #需要指明
+
+    druid:
+      # Druid SQL监控和SQL防火墙功能
+      filters: stat,wall
+      # Druid监控页功能
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: 123456
+
+      # Druid Web监控功能
+      web-stat-filter:
+        enabled: true
+
+  redis:
+    password: 123456
+    client-type: jedis
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
+
+mybatis:
+  type-aliases-package: com.example.demo.bo
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+
+  endpoint:
+    health:
+      show-details: always # 开启健康状态详细报告
+
+info:
+  appName: DemoApplication
+  appVersion: 1.0.0
+  mavenProjectName: @project.artifactId@
+  mavenProjectVersion: @project.version@
+
